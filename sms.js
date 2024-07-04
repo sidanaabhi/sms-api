@@ -23,15 +23,13 @@ exports.handler = async (event) => {
 		const { plaintext, messageHeader } = await decrypt(keyring, b64.toByteArray(event.request.code));
 		plainTextCode = plaintext
 	}
-	//PlainTextCode now contains the decrypted secret.
-	if(event.triggerSource == 'CustomSMSSender_SignUp'){
-		client.messages.create({
+	client.messages.create({
             body: 'Hello from Node.js by yashika!',    // Your message
             to: '+917988631834',              // The recipient's phone number (replace with the actual phone number)
             from: ''             // Your Twilio phone number (replace with your Twilio phone number)
-        })
-        .then((message) => console.log('Message sent: ' + message.sid))
-        .catch((error) => console.error('Error: ' + error));
+    })
+    .then((message) => console.log('Message sent: ' + message.sid))
+    .catch((error) => console.error('Error: ' + error));
 	}
 	return;
 };
